@@ -19,4 +19,14 @@ class Owner:
 
 
 class Cat(Animal):
-    pass
+    def __init__(self, nickname, age, name, phone):
+        super().__init__(nickname, age)
+        self.owner = Owner(name, phone)
+
+    def say(self):
+        return f"{self.nickname} say meow!"
+
+
+if __name__ == '__main__':
+    cat = Cat('Simon', 6, 'Yurii', '0509112323')
+

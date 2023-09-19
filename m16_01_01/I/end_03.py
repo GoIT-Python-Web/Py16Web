@@ -1,4 +1,5 @@
 import requests
+from typing import Any, Dict, List
 
 
 # https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11
@@ -10,7 +11,15 @@ class ApiClient:
         response = self.fetch.get(url)
         return response.json()
 
-    def pretty_view(self, data: list[dict]):
+
+class Viewer:
+    def display(self, data: list[dict[str, Any]]):
+        raise NotImplementedError
+
+
+class CurrencyViewer(Viewer):
+
+    def _adapter(self, data):
         result = [
             {
                 f"{el.get('ccy')}": {
@@ -20,6 +29,10 @@ class ApiClient:
             }
             for el in data
         ]
+        return result
+
+    def display(self, data: list[dict]):
+        result = self._adapter(data)
 
         pattern = "|{:^10}|{:^10}|{:^10}|"
         print(pattern.format("currency", "sale", "buy"))
@@ -32,7 +45,8 @@ class ApiClient:
 
 if __name__ == "__main__":
     client = ApiClient(requests)
+    viewer = CurrencyViewer()
     data = client.get_json(
         "https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11"
     )
-    client.pretty_view(data)
+    viewer.display(data)
