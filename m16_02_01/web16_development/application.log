@@ -1,0 +1,4 @@
+[ERROR] 2023-09-26 20:46:04,093: my_logger foo:16 - AAAAA!!!!
+[ERROR] 2023-09-26 20:46:49,240: my_logger log02 foo:16 - AAAAA!!!!
+[ERROR] 2023-09-26 20:50:21,719: my_logger log03 foo:14 - AAAAA!!!!
+[ERROR] 2023-09-26 20:50:33,721: my_logger log03 foo:13 - AAAAA!!!!
