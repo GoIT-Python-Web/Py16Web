@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "m16-poetry-app"
+version = "0.1.0"
+description = ""
+authors = ["Yuriy Kuchma <krabatua@gmail.com>"]
+readme = "README.md"
+#packages = [{include = "m16_poetry_app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.3.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
