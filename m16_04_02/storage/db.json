@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Перша стаття",
+    "date": "12.10.2023",
+    "author": "Dmitro",
+    "text": "Lorem Ipsum is Lorem Ipsum and therefore  the canonical form of Lorem Ipsum"
+  },
+    {
+    "title": "О корисності пива",
+    "date": "11.10.2023",
+    "author": "Andriy",
+    "text": "Lorem Ipsum is Lorem Ipsum and therefore  the canonical form of Lorem Ipsum"
+  },
+    {
+    "title": "Чому програмування це зло",
+    "date": "10.10.2023",
+    "author": "Eduardo",
+    "text": "Lorem Ipsum is Lorem Ipsum and therefore  the canonical form of Lorem Ipsum"
+  },
+    {
+    "title": "Куди тікають птахи?",
+    "date": "9.10.2023",
+    "author": "Sergiy",
+    "text": "Lorem Ipsum is Lorem Ipsum and therefore  the canonical form of Lorem Ipsum"
+  },
+    {
+    "title": "Хто вкрав камаз?",
+    "date": "5.10.2023",
+    "author": "Ruslan",
+    "text": "Lorem Ipsum is Lorem Ipsum and therefore  the canonical form of Lorem Ipsum"
+  },
+    {
+    "title": "Ми переможемо!",
+    "date": "1.10.2023",
+    "author": "Володимир",
+    "text": "Lorem Ipsum is Lorem Ipsum and therefore  the canonical form of Lorem Ipsum"
+  }
+]
