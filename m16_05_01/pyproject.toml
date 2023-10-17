@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "m16-05-01"
+version = "0.1.0"
+description = ""
+authors = ["Yuriy Kuchma <krabatua@gmail.com>"]
+readme = "README.md"
+packages = [{include = "m16_05_01"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+faker = "^19.10.0"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
