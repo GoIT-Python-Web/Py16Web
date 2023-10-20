@@ -1,0 +1,22 @@
+
+input[type=text] {
+  width: 300px;
+  border: 1px solid lightseagreen;
+  padding: 5px 10px;
+  color: darkred;
+  font-size: 16px;
+  font-family: 'Cambria', 'Cochin', 'Georgia', 'Times', 'Times New Roman', serif;
+}
+
+button {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+#subscribe {
+  color: darkblue;
+  font-size: 14px;
+  font-family: 'Courier New', 'Courier', monospace;
+  margin-top: 20px;
+}
