@@ -6,6 +6,7 @@ def counting_sort(arr, position):
     # Рахунок входжень певного розряду
     for i in range(0, size):
         index = arr[i] // position % 10
+        t = arr[i]
         count[index] += 1
 
     for i in range(0, 10):
@@ -32,6 +33,6 @@ def radix_sort(arr):
 
 
 if __name__ == '__main__':
-    numbers = [34, 5, 23, 1, 14]
+    numbers = [34, 5, 23, 1, 14, 1, 2, 2]
     r = radix_sort(numbers)
     print(numbers)
