@@ -4,25 +4,25 @@ from bson.objectid import ObjectId
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-uri = "mongodb+srv://userweb16:567234@krabaton.5mlpr.gcp.mongodb.net/?retryWrites=true&w=majority"
+uri = "mongodb+srv://userweb16:****@krabaton.5mlpr.gcp.mongodb.net/?retryWrites=true&w=majority"
 
-client = MongoClient(uri, server_api=ServerApi('1'))
+client = MongoClient(uri, server_api=ServerApi("1"))
 db = client.web16
 
-parser = argparse.ArgumentParser(description='Server Cats Enterprise')
-parser.add_argument('--action', help="create, update, read, delete")  # CRUD action
-parser.add_argument('--id')
-parser.add_argument('--name')
-parser.add_argument('--age')
-parser.add_argument('--features', nargs='+')
+parser = argparse.ArgumentParser(description="Server Cats Enterprise")
+parser.add_argument("--action", help="create, update, read, delete")  # CRUD action
+parser.add_argument("--id")
+parser.add_argument("--name")
+parser.add_argument("--age")
+parser.add_argument("--features", nargs="+")
 
 arg = vars(parser.parse_args())
 
-action = arg.get('action')
-pk = arg.get('id')
-name = arg.get('name')
-age = arg.get('age')
-features = arg.get('features')
+action = arg.get("action")
+pk = arg.get("id")
+name = arg.get("name")
+age = arg.get("age")
+features = arg.get("features")
 
 
 def find():
@@ -30,22 +30,27 @@ def find():
 
 
 def create(name, age, features):
-    r = db.cats.insert_one({
-        "name": name,
-        "age": age,
-        "features": features,
-    })
-    return r
-
-
-def update(pk, name, age, features):
-    r = db.cats.update_one({"_id": ObjectId(pk)}, {
-        "$set": {
+    r = db.cats.insert_one(
+        {
             "name": name,
             "age": age,
             "features": features,
         }
-    })
+    )
+    return r
+
+
+def update(pk, name, age, features):
+    r = db.cats.update_one(
+        {"_id": ObjectId(pk)},
+        {
+            "$set": {
+                "name": name,
+                "age": age,
+                "features": features,
+            }
+        },
+    )
     return r
 
 
@@ -55,21 +60,21 @@ def delete(pk):
 
 def main():
     match action:
-        case 'create':
+        case "create":
             r = create(name, age, features)
             print(r)
-        case 'read':
+        case "read":
             r = find()
             print([e for e in r])
-        case 'update':
+        case "update":
             r = update(pk, name, age, features)
             print(r)
-        case 'delete':
+        case "delete":
             r = delete(pk)
             print(r)
         case _:
-            print('Unknown command')
+            print("Unknown command")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

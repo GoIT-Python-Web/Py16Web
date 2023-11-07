@@ -1,31 +1,41 @@
 import argparse
 
 from bson.objectid import ObjectId
-from mongoengine import connect, Document, StringField, IntField, ListField, DoesNotExist
+from mongoengine import (
+    connect,
+    Document,
+    StringField,
+    IntField,
+    ListField,
+    DoesNotExist,
+)
 
-connect(db="web16", host="mongodb+srv://userweb16:567234@krabaton.5mlpr.gcp.mongodb.net/?retryWrites=true&w=majority")
+connect(
+    db="web16",
+    host="mongodb+srv://userweb16:****@krabaton.5mlpr.gcp.mongodb.net/?retryWrites=true&w=majority",
+)
 
-parser = argparse.ArgumentParser(description='Server Cats Enterprise')
-parser.add_argument('--action', help="create, update, read, delete")  # CRUD action
-parser.add_argument('--id')
-parser.add_argument('--name')
-parser.add_argument('--age')
-parser.add_argument('--features', nargs='+')
+parser = argparse.ArgumentParser(description="Server Cats Enterprise")
+parser.add_argument("--action", help="create, update, read, delete")  # CRUD action
+parser.add_argument("--id")
+parser.add_argument("--name")
+parser.add_argument("--age")
+parser.add_argument("--features", nargs="+")
 
 arg = vars(parser.parse_args())
 
-action = arg.get('action')
-pk = arg.get('id')
-name = arg.get('name')
-age = arg.get('age')
-features = arg.get('features')
+action = arg.get("action")
+pk = arg.get("id")
+name = arg.get("name")
+age = arg.get("age")
+features = arg.get("features")
 
 
 class Cat(Document):
     name = StringField(max_length=120, required=True)
     age = IntField(min_value=1, max_value=30)
     features = ListField(StringField(max_length=150))
-    meta = {"collection": 'cats'}
+    meta = {"collection": "cats"}
 
 
 def find():
@@ -57,23 +67,23 @@ def delete(pk):
 
 def main():
     match action:
-        case 'create':
+        case "create":
             r = create(name, age, features)
             print(r.to_mongo().to_dict())
-        case 'read':
+        case "read":
             r = find()
             print([e.to_mongo().to_dict() for e in r])
-        case 'update':
+        case "update":
             r = update(pk, name, age, features)
             if r:
                 print(r.to_mongo().to_dict())
-        case 'delete':
+        case "delete":
             r = delete(pk)
             if r:
                 print(r.to_mongo().to_dict())
         case _:
-            print('Unknown command')
+            print("Unknown command")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
