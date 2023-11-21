@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "m16-10-01"
+version = "0.1.0"
+description = ""
+authors = ["Yuriy Kuchma <krabatua@gmail.com>"]
+readme = "README.md"
+packages = [{include = "m16_10_01"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2.7"
+pillow = "^10.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

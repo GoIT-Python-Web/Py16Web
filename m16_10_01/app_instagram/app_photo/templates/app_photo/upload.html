@@ -1,0 +1,27 @@
+{% extends 'app_photo/base.html' %}
+
+{% block body %}
+<div class="container mt-3">
+    {% if form.errors and form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+        {{form.non_field_errors}}
+    </div>
+    {% endif %}
+    <form action="{% url 'app_photo:upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Description</label>
+            {{ form.description }}
+            <div id="emailHelp" class="form-text">Description for picture</div>
+            <span>{{form.errors.description}}</span>
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Default file input example</label>
+            {{ form.path }}
+            <span>{{form.errors.path}}</span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'app_photo/base.html' %}
+
+{% block body %}
+<div class="container mt-3">
+    <h1>Pictures</h1>
+    <div class="row">
+        {% for pic in pics %}
+        <div class="col-md-6">
+            <div class="card" style="width: 18rem;">
+                <img src="{{pic.path.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">{{pic.description}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}
