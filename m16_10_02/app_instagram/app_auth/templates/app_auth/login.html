@@ -1,0 +1,39 @@
+{% extends 'app_photo/base.html' %}
+
+{% block body %}
+<div class="container mt-3">
+    <h2>Login User</h2>
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <span {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if form.errors and form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+        {{form.non_field_errors}}
+    </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Username
+                {{ form.username }}
+            </label>
+            <span>{{form.errors.username}}</span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password
+                {{ form.password }}
+            </label>
+            <span>{{form.errors.password}}</span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </form>
+</div>
+{% endblock %}
