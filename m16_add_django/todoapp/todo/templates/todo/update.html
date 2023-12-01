@@ -1,0 +1,14 @@
+{% extends "todo/base.html" %}
+
+{% block content %}
+<h2>Update Todo</h2>
+
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{% url 'delete-todo' object.id %}" class="btn btn-danger"> Видалить </a>
+    <a href="{% url 'main' %}" class="btn btn-light"> Повернутися </a>
+</form>
+{% endblock %}

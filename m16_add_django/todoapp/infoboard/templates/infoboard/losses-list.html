@@ -1,0 +1,86 @@
+{% extends "infoboard/base.html" %}
+{% block content %}
+
+    <div class="container">
+        <p class="d-flex flex-column align-items-center justify-content-center bg-secondary" style="height: 55px">
+            Welcome to our dashboard
+        </p>
+        {% for dt, ls in results %}
+            <h5>
+                Дата:
+                <time>{{ dt }}</time>
+            </h5>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Назва</th>
+                    <th scope="col">Кількість</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for k, v in ls %}
+                    <tr>
+                        <td>{{ k }}</td>
+                        <td>{{ v }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+
+        <nav aria-label="Page navigation" class="d-flex justify-content-center">
+            <ul class="pagination">
+                {% if page.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1" aria-label="Перша">
+                            <span aria-hidden="true">&laquo;&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Попередня">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link">&laquo;&laquo;</span>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link">&laquo;</span>
+                    </li>
+                {% endif %}
+
+                <li class="page-item active">
+      <span class="page-link">
+        Сторінка {{ page.number }} з {{ page.paginator.num_pages }}
+      </span>
+                </li>
+
+                {% if page.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Наступна">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page.paginator.num_pages }}" aria-label="Остання">
+                            <span aria-hidden="true">&raquo;&raquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link">&raquo;</span>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link">&raquo;&raquo;</span>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+
+    </div>
+
+
+
+{% endblock %}

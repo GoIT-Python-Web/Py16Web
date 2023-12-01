@@ -1,0 +1,39 @@
+{% extends "todo/base.html" %}
+{% load humanize %}
+{% block content %}
+<h2>Todo List</h2>
+<div class="col-3">
+    <a href="{% url 'create-todo' %}" class="btn btn-primary"> Нове завдання </a>
+</div>
+<div class="list-group">
+    {% for todo in todo_list %}
+    <a href="{% url 'edit-todo' todo.id %}"
+       class="list-group-item {% if todo.completed %} bg-success bg-gradient {% else %} bg-light bg-gradient {% endif %}">
+        <div>
+            <h5>{{todo.title}}</h5>
+            <small>{{todo.published|naturaltime}}</small>
+        </div>
+        <p>
+            {{todo.description|truncatechars:30}}
+        </p>
+    </a>
+    {% endfor %}
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
