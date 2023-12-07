@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <div class="container py-5" x-data="{
+    tasks: [],
+    newTask: { title: '', description: '', completed: false },
+    error: null,
+    async getTasks() {
+      try {
+        this.tasks = await window.getTasks();
+      } catch (err) {
+        this.error = err.message;
+      }
+    },
+    async createTask() {
+      try {
+        await window.createTask(this.newTask);
+        this.newTask = { title: '', description: '', completed: false };
+        await this.getTasks();
+      } catch (err) {
+        this.error = err.message;
+      }
+    },
+    async editTask(task) {
+      try {
+        await window.editTask(task);
+        task.editing = false;
+        await this.getTasks();
+      } catch (err) {
+        this.error = err.message;
+      }
+    },
+    async deleteTask(id) {
+      try {
+        await window.deleteTask(id);
+        this.tasks = this.tasks.filter(task => task.id !== id);
+      } catch (err) {
+        this.error = err.message;
+      }
+    },
+    init() { this.getTasks(); }
+  }" x-init="init()">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h1 class="mb-4 text-center">TODO App</h1>
+
+        <!-- Отображение сообщения об ошибке -->
+        <div x-show="error" class="alert alert-danger" x-text="error"></div>
+
+        <div class="row mb-3">
+          <div class="input-group mb-3">
+            <input type="text" x-model="newTask.title" class="form-control" placeholder="Task name">
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" x-model="newTask.description" class="form-control" placeholder="Task description">
+          </div>
+          <div class="input-group mb-3 form-check">
+            <input type="checkbox" x-model="newTask.completed" class="form-check-input">
+            <label class="form-check-label" for="flexCheckChecked">
+              Done
+            </label>
+          </div>
+
+          <button @click="createTask" class="btn btn-primary">Add</button>
+
+        </div>
+
+        <ul class="list-group">
+          <template x-for="task in tasks" :key="task.id">
+            <li class="list-group-item">
+              <div x-show="!task.editing">
+                <div><strong>Title:</strong> <span @dblclick="task.editing = true" x-text="task.title"></span></div>
+                <div><strong>Description:</strong> <span @dblclick="task.editing = true"
+                    x-text="task.description"></span></div>
+                <button @click="deleteTask(task.id)" class="btn btn-sm btn-danger">Delete</button>
+                <button @click="task.editing = true" class="btn btn-sm btn-warning">Edit</button>
+              </div>
+              <div x-show="task.editing">
+                <input type="text" class="form-control" x-model="task.title">
+                <input type="text" class="form-control" x-model="task.description">
+                <div x-text="task.title"></div>
+                <div class="form-check">
+                  <input type="checkbox" x-model="task.completed" class="form-check-input">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Done
+                  </label>
+                </div>
+
+                <button @click="editTask(task)" class="btn btn-sm btn-success">Save</button>
+                <button @click="task.editing = false" class="btn btn-sm btn-secondary">Cancel</button>
+              </div>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
