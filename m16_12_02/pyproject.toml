@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "m16-12-02"
+version = "0.1.0"
+description = ""
+authors = ["Yuriy Kuchma <krabatua@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.104.1"
+alembic = "^1.13.0"
+sqlalchemy = "^2.0.23"
+asyncpg = "^0.29.0"
+uvicorn = "^0.24.0.post1"
+python-jose = { extras = ["cryptography"], version = "^3.3.0" }
+pydantic = { extras = ["email"], version = "^2.5.2" }
+python-multipart = "^0.0.6"
+passlib = { extras = ["bcrypt"], version = "^1.7.4" }
+libgravatar = "^1.0.4"
+fastapi-users = {extras = ["sqlalchemy"], version = "^12.1.2"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

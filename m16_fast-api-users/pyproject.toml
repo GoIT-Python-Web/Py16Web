@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "m16-fast-api-users"
+version = "0.1.0"
+description = ""
+authors = ["Yuriy Kuchma <krabatua@gmail.com>"]
+readme = "README.md"
+packages = [{include = "m16_fast_api_users"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.105.0"
+fastapi-users = {extras = ["sqlalchemy"], version = "^12.1.2"}
+uvicorn = {extras = ["standard"], version = "^0.24.0.post1"}
+aiosqlite = "^0.19.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

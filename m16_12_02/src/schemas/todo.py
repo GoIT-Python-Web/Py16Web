@@ -3,7 +3,7 @@ from typing import Optional
 
 from pydantic import BaseModel, EmailStr, Field
 
-from src.schemas.user import UserResponse
+from src.schemas.user import UserRead
 
 
 class TodoSchema(BaseModel):
@@ -23,7 +23,7 @@ class TodoResponse(BaseModel):
     completed: bool
     created_at: datetime | None
     updated_at: datetime | None
-    user: UserResponse | None
+    user: UserRead | None
 
     class Config:
         from_attributes = True
