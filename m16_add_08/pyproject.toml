@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "m16-add-08"
+version = "0.1.0"
+description = ""
+authors = ["Yuriy Kuchma <krabatua@gmail.com>"]
+readme = "README.md"
+packages = [{include = "m16_add_08"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pulp = "^2.7.0"
+sympy = "^1.12"
+scipy = "^1.11.4"
+matplotlib = "^3.8.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

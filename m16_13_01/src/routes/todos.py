@@ -16,6 +16,7 @@ access_to_route_all = RoleAccess([Role.admin, Role.moderator])
 @router.get("/", response_model=list[TodoResponse])
 async def get_todos(limit: int = Query(10, ge=10, le=500), offset: int = Query(0, ge=0),
                     db: AsyncSession = Depends(get_db), user: User = Depends(auth_service.get_current_user)):
+
     todos = await repositories_todos.get_todos(limit, offset, db, user)
     return todos
 
