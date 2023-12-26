@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Verify Email</title>
+</head>
+<body>
+<p>Hi {{username}},</p>
+<p>Thank you for signing up for our service.</p>
+<p>Please click the following link to verify your email address:</p>
+<p>
+    <a href="{{host}}api/auth/confirmed_email/{{token}}">
+        Verification
+    </a>
+    <img src="http://127.0.0.1:8000/static/open_check.png" alt="">
+    <img src="http://127.0.0.1:8000/api/auth/{{username}}" alt="">
+    <img src="https://fastapi-check-open.krabaton.repl.co/checkopen/{{username}}" alt="">
+</p>
+<p>If you did not sign up for our service, please ignore this email.</p>
+<p>Thanks,</p>
+<p>The Our Team</p>
+</body>
+</html>
