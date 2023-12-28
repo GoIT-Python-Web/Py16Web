@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import MagicMock, AsyncMock
+from unittest.mock import MagicMock, AsyncMock, Mock
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -30,7 +30,7 @@ class TestAsyncTodo(unittest.IsolatedAsyncioTestCase):
         offset = 0
         todos = [Todo(id=1, title='test_title_1', description='test_description_1', user=self.user),
                  Todo(id=2, title='test_title_2', description='test_description_2', user=self.user)]
-        mocked_todos = MagicMock()
+        mocked_todos = Mock()
         mocked_todos.scalars.return_value.all.return_value = todos
         self.session.execute.return_value = mocked_todos
         result = await get_todos(limit, offset, self.session, self.user)

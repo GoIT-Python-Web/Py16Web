@@ -15,7 +15,7 @@ class UserResponse(BaseModel):
     id: int = 1
     username: str
     email: EmailStr
-    avatar: str
+    avatar: str | None
     role: Role
 
     model_config = ConfigDict(from_attributes = True)  # noqa
